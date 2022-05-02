@@ -8,7 +8,11 @@
 // Motor home 2-6 people - $200/day - min 2 days, max 15 days, 17L/100km
 
 const vehiclesDiv = document.getElementById("vehicles-div");
+const passengersInput = document.getElementById("passengers-input");
+const distanceInput = document.getElementById("distance-input");
+const form = document.getElementById("form");
 
+//Vehicle Data
 const vehicles = [
     {name: "Motorbike", minPassengers: 1, maxPassengers: 1, dailyRate: 109, minDays: 1, maxDays: 5, efficiency: 3.7},
     {name: "Small Car", minPassengers: 1, maxPassengers: 2, dailyRate: 129, minDays: 1, maxDays: 10, efficiency: 8.5},
@@ -17,23 +21,33 @@ const vehicles = [
 ]
 
 function update(){
+    // Get user inputs
+    numberOfPeople = passengersInput.value
+    travelDistance = distanceInput.value
 
-    numberOfPeople = document.getElementById("passengers-input").value
 
+    // Validate user inputs against vehicle conditions and add available options to array
     const recommendedVehicles = []
-
     vehicles.forEach(vehicle => {
         if (numberOfPeople >= vehicle.minPassengers && numberOfPeople <= vehicle.maxPassengers){
             recommendedVehicles.push(vehicle)
         }
     });
 
-    vehiclesDiv.innerHTML = ""
-    recommendedVehicles.forEach(vehicle => {
-        vehiclesDiv.appendChild(makeVehicleDiv(vehicle))
-    });
+
+    if (recommendedVehicles.length > 0) {
+        //Display available options
+        vehiclesDiv.innerHTML = ""
+        recommendedVehicles.forEach(vehicle => {
+            vehiclesDiv.appendChild(makeVehicleDiv(vehicle))
+        });
+    } else {
+        //Add error Logic here if there's no options available
+        vehiclesDiv.innerText = "Sorry, no options available for your selected party and/or distance."
+    }
 }
 
+//Create HTML element to display individual vehicle option
 function makeVehicleDiv(vehicle){
     const element = document.createElement("div")
     element.classList.add("vehicle")
@@ -45,6 +59,8 @@ function makeVehicleDiv(vehicle){
     return element
 }
 
-document.getElementById("submit").addEventListener("click", () => {
-    update()
+//Capture submit event from form
+document.getElementById("form").addEventListener("submit", (e) => {
+    e.preventDefault()
+    update(e)
 })
