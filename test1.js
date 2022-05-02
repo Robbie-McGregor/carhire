@@ -59,7 +59,7 @@ function makeVehicleDiv(vehicle){
     element.innerHTML = `
         <div>${vehicle.name}</div><br>
         <div>$${vehicle.dailyRate} per day</div><br>
-        <div>$Efficiency: ${vehicle.efficiency}L per 100KM</div><br><br><br>
+        <div>Efficiency: ${vehicle.efficiency}L per 100KM</div><br><br><br>
     `
     return element
 }
