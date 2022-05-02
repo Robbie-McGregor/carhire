@@ -8,8 +8,6 @@
 // Motor home 2-6 people - $200/day - min 2 days, max 15 days, 17L/100km
 
 const vehiclesDiv = document.getElementById("vehicles-div");
-const passengersInput = document.getElementById("passengers-input");
-const distanceInput = document.getElementById("distance-input");
 const form = document.getElementById("form");
 
 //Vehicle Data
@@ -20,16 +18,16 @@ const vehicles = [
     {name: "Motor Home", minPassengers: 2, maxPassengers: 6, dailyRate: 200, minDays: 2, maxDays: 15, efficiency: 17}
 ]
 
-function update(){
+function update(passengers, distance){
     // Get user inputs
-    numberOfPeople = passengersInput.value
-    travelDistance = distanceInput.value
+    passengers = passengers
+    distance = distance
 
 
     // Validate user inputs against vehicle conditions and add available options to array
     const recommendedVehicles = []
     vehicles.forEach(vehicle => {
-        if (numberOfPeople >= vehicle.minPassengers && numberOfPeople <= vehicle.maxPassengers){
+        if (passengers >= vehicle.minPassengers && passengers <= vehicle.maxPassengers){
             recommendedVehicles.push(vehicle)
         }
     });
@@ -62,5 +60,7 @@ function makeVehicleDiv(vehicle){
 //Capture submit event from form
 document.getElementById("form").addEventListener("submit", (e) => {
     e.preventDefault()
-    update(e)
+    passengers = e.target.children.passengers.value
+    distance = e.target.children.distance.value
+    update(passengers, distance)
 })
