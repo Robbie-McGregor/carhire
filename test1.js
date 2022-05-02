@@ -7,32 +7,14 @@
 // Large car 1-5 people - $144/day - min 3 days, max 10 days, 9.7L/100km
 // Motor home 2-6 people - $200/day - min 2 days, max 15 days, 17L/100km
 
-
-
-
-var numberOfPeople = 3;
-var lengthOfTravel = 1;
 const vehiclesDiv = document.getElementById("vehicles-div");
 
-class Vehicle {
-    constructor(name, minPassengers, maxPassengers, dailyRate, minDays, maxDays, efficiency){
-        this.name = name,
-        this.minPassengers = minPassengers,
-        this.maxPassengers = maxPassengers,
-        this.dailyRate = dailyRate,
-        this.minDays = minDays,
-        this.maxDays = maxDays,
-        this.efficiency = efficiency
-    }
-}
-
-
-const motorbike = new Vehicle("Motorbike", 1, 1, 109, 1, 5, 3.7)
-const smallCar = new Vehicle("Small Car", 1, 2, 129, 1, 10, 8.5)
-const largeCar = new Vehicle("Large Car", 1, 5, 144, 3, 10, 9.7)
-const motorHome = new Vehicle("Motor Home", 2, 6, 200, 2, 15, 17)
-
-const vehicles = [motorbike, smallCar, largeCar, motorHome]
+const vehicles = [
+    {name: "Motorbike", minPassengers: 1, maxPassengers: 1, dailyRate: 109, minDays: 1, maxDays: 5, efficiency: 3.7},
+    {name: "Small Car", minPassengers: 1, maxPassengers: 2, dailyRate: 129, minDays: 1, maxDays: 10, efficiency: 8.5},
+    {name: "Large Car", minPassengers: 1, maxPassengers: 5, dailyRate: 144, minDays: 3, maxDays: 10, efficiency: 9.7},
+    {name: "Motor Home", minPassengers: 2, maxPassengers: 6, dailyRate: 200, minDays: 2, maxDays: 15, efficiency: 17}
+]
 
 function update(){
 
@@ -49,7 +31,6 @@ function update(){
     vehiclesDiv.innerHTML = ""
     recommendedVehicles.forEach(vehicle => {
         vehiclesDiv.appendChild(makeVehicleDiv(vehicle))
-
     });
 }
 
