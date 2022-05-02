@@ -12,7 +12,7 @@
 
 var numberOfPeople = 3;
 var lengthOfTravel = 1;
-const h2 = document.getElementById("h2");
+const vehiclesDiv = document.getElementById("vehicles-div");
 
 class Vehicle {
     constructor(name, minPassengers, maxPassengers, dailyRate, minDays, maxDays, efficiency){
@@ -38,19 +38,30 @@ function update(){
 
     numberOfPeople = document.getElementById("passengers-input").value
 
-    h2.innerText = ""
-    var h2Message = ""
     const recommendedVehicles = []
 
     vehicles.forEach(vehicle => {
         if (numberOfPeople >= vehicle.minPassengers && numberOfPeople <= vehicle.maxPassengers){
             recommendedVehicles.push(vehicle)
-            h2.innerText += vehicle.name + "\n"
         }
     });
 
+    vehiclesDiv.innerHTML = ""
+    recommendedVehicles.forEach(vehicle => {
+        vehiclesDiv.appendChild(makeVehicleDiv(vehicle))
 
+    });
+}
 
+function makeVehicleDiv(vehicle){
+    const element = document.createElement("div")
+    element.classList.add("vehicle")
+    element.innerHTML = `
+        <div>${vehicle.name}</div><br>
+        <div>$${vehicle.dailyRate} per day</div><br>
+        <div>$Efficiency: ${vehicle.efficiency}L per 100KM</div><br><br><br>
+    `
+    return element
 }
 
 document.getElementById("submit").addEventListener("click", () => {
