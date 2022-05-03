@@ -23,7 +23,7 @@ function update(formData){
     passengers = formData.passengers
     days = formData.days
     vehiclesDiv.innerHTML = ""
-    // Validate user inputs against vehicle conditions and add available options to array
+    // Validate user inputs against vehicle conditions and add available options to page
     numAvailableOptions = 0
     vehicles.forEach(vehicle => {
         if (passengers >= vehicle.minPassengers && passengers <= vehicle.maxPassengers && days >= vehicle.minDays && days <= vehicle.maxDays){
