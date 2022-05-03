@@ -57,7 +57,6 @@ function makeVehicleDiv(vehicle){
 //Capture submit event from form
 document.getElementById("form").addEventListener("submit", (e) => {
     e.preventDefault()
-    console.log(e.target.elements)
     update({
         passengers: e.target.elements.passengers.value,
         days: e.target.elements.days.value 
