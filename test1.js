@@ -33,7 +33,7 @@ function update(formData){
     });
     if (numAvailableOptions == 0) {
         //Add error Logic here if there's no options available
-        vehiclesDiv.innerText = "Sorry, no options available for your selected party and/or length."
+        vehiclesDiv.innerText = "\n\nSorry, no options available for your selected party and/or length."
     }
 }
 
