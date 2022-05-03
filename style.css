@@ -1,0 +1,99 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600&display=swap');
+
+*{
+    font-family: 'Open Sans', Arial, Helvetica, sans-serif;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+.vehicle{
+    display: flex;
+}
+
+.vehicle img{
+    width: 300px;
+}
+
+.wrapper{
+    display: flex;
+}
+
+.content{
+    max-width: 1000px;
+    margin: 25px auto 75px auto;
+}
+
+nav{
+    width: 100vw;
+    text-align: center;
+    background-color: rgba(0, 195, 255, 0.438);
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+nav img{
+    height: 55px;
+}
+
+nav h1{
+    font-size: 35px;
+}
+
+form{
+    border: 1px solid black;
+    background-color: rgba(0, 195, 255, 0.123);
+    width: 500px;
+    padding: 50px;
+    border-radius: 5px;
+    margin-top: 20px;
+    margin-bottom: 30px;
+}
+
+form button{
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;;
+    font-weight: 600;
+}
+
+.input-row{
+    margin-top: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+input{
+    padding: 7.5px;
+}
+
+.input-row:first-of-type{
+    margin-top: 0;
+}
+
+h1{
+    text-align: center;
+}
+
+.vehicle{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    margin-top: 25px;
+    padding: 10px;
+    background-color: rgba(128, 128, 128, 0.144);
+    border-radius: 5px;
+}
+
+.vehicle h1{
+    text-align: center;
+    width: 100%;
+}
+
+.vehicle-info{
+    width: 100%;
+    padding: 15px
+}

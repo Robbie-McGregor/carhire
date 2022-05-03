@@ -4,23 +4,36 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
     <title>Test1</title>
 </head>
 <body>
-    <form id="form" action="">
-        <label for="passengers">How Many Passengers:</label>
-        <input type="number" min="1" max="6" name="passengers" id="passengers-input">
-        <br>
-        <br>
-        <label for="passengers">How Far are you Travelling:</label>
-        <input type="number" min="1" name="distance" id="distance-input">
-        <br>
-        <br>
-        <button type="submit" id="submit">GO</button>
-    </form>
+    <nav>
+        <h1>KRAZY KAT CAR HIRE</h1>
+    </nav>
+    <div class="wrapper">
+        <div class="content">
+            <form id="form" action="">
+                <div class="input-row">
+                    <label for="passengers">How Many Passengers:</label>
+                    <input type="number" min="1" max="6" name="passengers" id="passengers-input">
+                </div>
+                <div class="input-row">
+                    <label for="days">How Many Days of Hire:</label>
+                    <input type="number" min="1" max="15" name="days" id="days-input">
+                </div>
+                <div class="input-row">
+                    <button type="submit" id="submit">GO</button>
+                </div>
+            </form>
+        
+            <h1>YOU CAN HIRE:</h1>
+            <div id="vehicles-div"></div>
+        </div>
+    </div>
 
-    <h1>You can hire:</h1>
-    <div id="vehicles-div"></div>
+
     <script src="test1.js"></script>
 </body>
 </html>
+

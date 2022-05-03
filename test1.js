@@ -12,36 +12,28 @@ const form = document.getElementById("form");
 
 //Vehicle Data
 const vehicles = [
-    {name: "Motorbike", minPassengers: 1, maxPassengers: 1, dailyRate: 109, minDays: 1, maxDays: 5, efficiency: 3.7},
-    {name: "Small Car", minPassengers: 1, maxPassengers: 2, dailyRate: 129, minDays: 1, maxDays: 10, efficiency: 8.5},
-    {name: "Large Car", minPassengers: 1, maxPassengers: 5, dailyRate: 144, minDays: 3, maxDays: 10, efficiency: 9.7},
-    {name: "Motor Home", minPassengers: 2, maxPassengers: 6, dailyRate: 200, minDays: 2, maxDays: 15, efficiency: 17}
+    {id: 1, name: "Motorbike", minPassengers: 1, maxPassengers: 1, dailyRate: 109, minDays: 1, maxDays: 5, efficiency: 3.7},
+    {id: 2, name: "Small Car", minPassengers: 1, maxPassengers: 2, dailyRate: 129, minDays: 1, maxDays: 10, efficiency: 8.5},
+    {id: 3, name: "Large Car", minPassengers: 1, maxPassengers: 5, dailyRate: 144, minDays: 3, maxDays: 10, efficiency: 9.7},
+    {id: 4, name: "Motor Home", minPassengers: 2, maxPassengers: 6, dailyRate: 200, minDays: 2, maxDays: 15, efficiency: 17}
 ]
 
-function update(passengers, distance){
+function update(formData){
     // Get user inputs
-    passengers = passengers
-    distance = distance
-
-
+    passengers = formData.passengers
+    days = formData.days
+    vehiclesDiv.innerHTML = ""
     // Validate user inputs against vehicle conditions and add available options to array
-    const recommendedVehicles = []
+    numAvailableOptions = 0
     vehicles.forEach(vehicle => {
-        if (passengers >= vehicle.minPassengers && passengers <= vehicle.maxPassengers){
-            recommendedVehicles.push(vehicle)
+        if (passengers >= vehicle.minPassengers && passengers <= vehicle.maxPassengers && days >= vehicle.minDays && days <= vehicle.maxDays){
+            vehiclesDiv.appendChild(makeVehicleDiv(vehicle))
+            numAvailableOptions++
         }
     });
-
-
-    if (recommendedVehicles.length > 0) {
-        //Display available options
-        vehiclesDiv.innerHTML = ""
-        recommendedVehicles.forEach(vehicle => {
-            vehiclesDiv.appendChild(makeVehicleDiv(vehicle))
-        });
-    } else {
+    if (numAvailableOptions == 0) {
         //Add error Logic here if there's no options available
-        vehiclesDiv.innerText = "Sorry, no options available for your selected party and/or distance."
+        vehiclesDiv.innerText = "Sorry, no options available for your selected party and/or length."
     }
 }
 
@@ -50,9 +42,14 @@ function makeVehicleDiv(vehicle){
     const element = document.createElement("div")
     element.classList.add("vehicle")
     element.innerHTML = `
-        <div>${vehicle.name}</div><br>
-        <div>$${vehicle.dailyRate} per day</div><br>
-        <div>Efficiency: ${vehicle.efficiency}L per 100KM</div><br><br><br>
+        <div>
+            <img src="img/${vehicle.id}.jpg" alt="" srcset="">
+        </div>
+        <div class="vehicle-info">
+            <h1>${vehicle.name}</h1><br>
+            <div>$${vehicle.dailyRate} per day</div><br>
+            <div>Efficiency: ${vehicle.efficiency}L per 100KM</div><br><br><br>
+        </div>
     `
     return element
 }
@@ -60,7 +57,9 @@ function makeVehicleDiv(vehicle){
 //Capture submit event from form
 document.getElementById("form").addEventListener("submit", (e) => {
     e.preventDefault()
-    passengers = e.target.children.passengers.value
-    distance = e.target.children.distance.value
-    update(passengers, distance)
+    console.log(e.target.elements)
+    update({
+        passengers: e.target.elements.passengers.value,
+        days: e.target.elements.days.value 
+    })
 })
